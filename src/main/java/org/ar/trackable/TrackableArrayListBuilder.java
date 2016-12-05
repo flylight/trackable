@@ -6,7 +6,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
- * {@link TrackableArrayListBuilder} .
+ * {@link TrackableArrayListBuilder} Trackable Array List builder. Build simple java {@link ArrayList}
+ * that use predefined consumers to extend simple operation behavior..
  */
 public class TrackableArrayListBuilder<T> {
 
