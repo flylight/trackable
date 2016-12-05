@@ -5,7 +5,7 @@ add additional functionality into their behavior.
 ### Use case
 
 Java has a lot of objects that developers moustly use. For example ArrayList is the main implementation for
-collection. It cover almost all cases of use collection and alot of people use it everyday.
+collection. It cover almost all cases of collection usage and a lot of people use it everyday.
 
 But sometimes we need to check is some element inside and do some logic then. Or we have to iterate thru array list and
 when we find some element then do something. All this operations give some complexity into code and decrease code redability.
