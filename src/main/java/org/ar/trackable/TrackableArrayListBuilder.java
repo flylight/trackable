@@ -7,52 +7,52 @@ import java.util.function.Consumer;
 
 /**
  * {@link TrackableArrayListBuilder} Trackable Array List builder. Build simple java {@link ArrayList}
- * that use predefined consumers to extend simple operation behavior..
+ * object that use provided consumers to extend simple operation behavior.
  */
 public class TrackableArrayListBuilder<T> {
 
-  private BiConsumer<Integer, T> whenAddByIndexConsumer;
-  private Consumer<T> whenAddConsumer;
-  private BiConsumer<Integer, Collection<? extends T>> whenAddAllByIndexConsumer;
-  private Consumer<Collection<? extends T>> whenAddAllConsumer;
-  private Consumer<Object> whenRemoveConsumer;
-  private Consumer<Integer> whenRemoveByIndexConsumer;
-  private Consumer<Collection<?>> whenRemoveAllConsumer;
+  private BiConsumer<Integer, T> addByIndexConsumer;
+  private Consumer<T> addConsumer;
+  private BiConsumer<Integer, Collection<? extends T>> addAllByIndexConsumer;
+  private Consumer<Collection<? extends T>> addAllConsumer;
+  private Consumer<Object> removeConsumer;
+  private Consumer<Integer> removeByIndexConsumer;
+  private Consumer<Collection<?>> removeAllConsumer;
 
   TrackableArrayListBuilder() {}
 
   public TrackableArrayListBuilder<T> whenAddByIndex(BiConsumer<Integer, T> whenAddByIndexConsumer) {
-    this.whenAddByIndexConsumer = whenAddByIndexConsumer;
+    this.addByIndexConsumer = whenAddByIndexConsumer;
     return this;
   }
 
   public TrackableArrayListBuilder<T> whenAdd(Consumer<T> whenAddConsumer) {
-    this.whenAddConsumer = whenAddConsumer;
+    this.addConsumer = whenAddConsumer;
     return this;
   }
 
   public TrackableArrayListBuilder<T> whenAddAllByIndex(BiConsumer<Integer, Collection<? extends T>> whenAddAllByIndexConsumer) {
-    this.whenAddAllByIndexConsumer = whenAddAllByIndexConsumer;
+    this.addAllByIndexConsumer = whenAddAllByIndexConsumer;
     return this;
   }
 
   public TrackableArrayListBuilder<T> whenAddAll(Consumer<Collection<? extends T>> whenAddAllConsumer) {
-    this.whenAddAllConsumer = whenAddAllConsumer;
+    this.addAllConsumer = whenAddAllConsumer;
     return this;
   }
 
   public TrackableArrayListBuilder<T> whenRemove(Consumer<Object> whenRemoveConsumer) {
-    this.whenRemoveConsumer = whenRemoveConsumer;
+    this.removeConsumer = whenRemoveConsumer;
     return this;
   }
 
   public TrackableArrayListBuilder<T> whenRemoveByIndex(Consumer<Integer> whenRemoveByIndexConsumer) {
-    this.whenRemoveByIndexConsumer = whenRemoveByIndexConsumer;
+    this.removeByIndexConsumer = whenRemoveByIndexConsumer;
     return this;
   }
 
   public TrackableArrayListBuilder<T> whenRemoveAll(Consumer<Collection<?>> whenRemoveAllConsumer) {
-    this.whenRemoveAllConsumer = whenRemoveAllConsumer;
+    this.removeAllConsumer = whenRemoveAllConsumer;
     return this;
   }
 
@@ -73,56 +73,56 @@ public class TrackableArrayListBuilder<T> {
     return new ArrayList<T>(initialCapacity) {
       @Override
       public void add(int index, T element) {
-        if (whenAddByIndexConsumer != null) {
-          whenAddByIndexConsumer.accept(index, element);
+        if (addByIndexConsumer != null) {
+          addByIndexConsumer.accept(index, element);
         }
         super.add(index, element);
       }
 
       @Override
       public boolean add(T element) {
-        if (whenAddConsumer != null) {
-          whenAddConsumer.accept(element);
+        if (addConsumer != null) {
+          addConsumer.accept(element);
         }
         return super.add(element);
       }
 
       @Override
       public boolean addAll(int index, Collection<? extends T> c) {
-        if (whenAddAllByIndexConsumer != null) {
-          whenAddAllByIndexConsumer.accept(index, c);
+        if (addAllByIndexConsumer != null) {
+          addAllByIndexConsumer.accept(index, c);
         }
         return super.addAll(index, c);
       }
 
       @Override
       public boolean addAll(Collection<? extends T> c) {
-        if (whenAddAllConsumer != null) {
-          whenAddAllConsumer.accept(c);
+        if (addAllConsumer != null) {
+          addAllConsumer.accept(c);
         }
         return super.addAll(c);
       }
 
       @Override
       public T remove(int index) {
-        if (whenRemoveByIndexConsumer != null) {
-          whenRemoveByIndexConsumer.accept(index);
+        if (removeByIndexConsumer != null) {
+          removeByIndexConsumer.accept(index);
         }
         return super.remove(index);
       }
 
       @Override
       public boolean remove(Object o) {
-        if (whenRemoveConsumer != null) {
-          whenRemoveConsumer.accept(o);
+        if (removeConsumer != null) {
+          removeConsumer.accept(o);
         }
         return super.remove(o);
       }
 
       @Override
       public boolean removeAll(Collection<?> c) {
-        if (whenRemoveAllConsumer != null) {
-          whenRemoveAllConsumer.accept(c);
+        if (removeAllConsumer != null) {
+          removeAllConsumer.accept(c);
         }
         return super.removeAll(c);
       }
