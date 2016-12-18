@@ -7,7 +7,7 @@ package org.ar.trackable;
  * Supported objects :
  * - {@link java.util.ArrayList}
  * - {@link java.util.LinkedList}
- *
+ * - {@link java.util.HashMap}
  */
 public class TrackableObjects {
 
@@ -17,5 +17,9 @@ public class TrackableObjects {
 
   public static <T> TrackableLinkedListBuilder<T> linkedList() {
     return new TrackableLinkedListBuilder<>();
+  }
+
+  public static <K, V> TrackableHashMapBuilder<K, V> hashMap() {
+    return new TrackableHashMapBuilder<>();
   }
 }

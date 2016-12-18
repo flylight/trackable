@@ -27,7 +27,7 @@ public class TrackableLinkedListTest {
         .whenAddLast(mirrorList::addLast)
         .whenRemove(mirrorList::remove)
         .whenRemoveAll(mirrorList::removeAll)
-        .whenRemoveByIndex(index -> mirrorList.remove((int)index))
+        .whenRemoveByIndex(index -> mirrorList.remove((int) index))
         .whenRemoveLastOccurrence(mirrorList::removeLastOccurrence)
         .build();
 
