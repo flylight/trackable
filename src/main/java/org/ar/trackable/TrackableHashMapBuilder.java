@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  */
 public class TrackableHashMapBuilder<K, V> {
   private BiConsumer<K, V> putConsumer;
-  private Consumer<Map> putAllConsumer;
+  private Consumer<Map<K, V>> putAllConsumer;
   private BiConsumer<K, V> putIfAbsentConsumer;
   private Consumer<Object> getConsumer;
   private BiConsumer<Object, V> getOrDefaultConsumer;
@@ -24,7 +24,7 @@ public class TrackableHashMapBuilder<K, V> {
     return this;
   }
 
-  public TrackableHashMapBuilder<K, V> whenPutAll(Consumer<Map> putAllConsumer) {
+  public TrackableHashMapBuilder<K, V> whenPutAll(Consumer<Map<K, V>> putAllConsumer) {
     this.putAllConsumer = putAllConsumer;
     return this;
   }
