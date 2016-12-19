@@ -19,12 +19,9 @@ from collection. All mostly used method can be extended in comfortable way when 
 - ArrayList
 - LinkedList
 - HashMap
-- LinkedHashMap
 - HashSet
 - TreeSet
- 
-etc. (comming soon)
 
 ### Examples
 
-(comming soon)
+(coming soon)
