@@ -4,10 +4,9 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -15,14 +14,14 @@ import static org.junit.Assert.assertTrue;
 /**
  * Unit test for Trackable Array List.
  */
-public class TrackableHashSetTest {
+public class TrackableTreeSetTest {
 
   @Test
   public void testAllConsumers() {
     //GIVEN
-    Set<String> mirrorSet= new HashSet<>();
+    TreeSet<String> mirrorSet= new TreeSet<>();
 
-    Set<String> targetSet = TrackableObjects.<String>hashSet()
+    TreeSet<String> targetSet = TrackableObjects.<String>treeSet()
         .whenAdd(mirrorSet::add)
         .whenRemove(mirrorSet::remove)
         .whenAddAll(mirrorSet::addAll)
@@ -37,7 +36,6 @@ public class TrackableHashSetTest {
     targetSet.removeAll(Collections.singletonList("test3"));
 
     //THEN
-    assertTrue(mirrorSet.size() == 1);
     assertEquals(mirrorSet, targetSet);
   }
 }

@@ -15,7 +15,6 @@ public class TrackableHashSetBuilder<T> {
   private Consumer<Object> removeConsumer;
   private Consumer<Collection<? extends T>> addAllConsumer;
   private Consumer<Collection<?>> removeAllConsumer;
-  private Consumer<Predicate<? super T>> removeIfConsumer;
 
   public TrackableHashSetBuilder<T> whenAdd(Consumer<T> addConsumer) {
     this.addConsumer = addConsumer;
@@ -34,11 +33,6 @@ public class TrackableHashSetBuilder<T> {
 
   public TrackableHashSetBuilder<T> whenRemoveAll(Consumer<Collection<?>> removeAllConsumer) {
     this.removeAllConsumer = removeAllConsumer;
-    return this;
-  }
-
-  public TrackableHashSetBuilder<T> whenRemoveIf(Consumer<Predicate<? super T>> removeIfConsumer) {
-    this.removeIfConsumer = removeIfConsumer;
     return this;
   }
 
@@ -74,14 +68,6 @@ public class TrackableHashSetBuilder<T> {
           removeAllConsumer.accept(c);
         }
         return super.removeAll(c);
-      }
-
-      @Override
-      public boolean removeIf(Predicate<? super T> filter) {
-        if (removeIfConsumer != null) {
-          removeIfConsumer.accept(filter);
-        }
-        return super.removeIf(filter);
       }
     };
   }
